@@ -31,7 +31,7 @@ function reverseString(stringInput) {
 
 // Start the sum total from zero and start the file reader
 let sumOfNum = 0;
-fs.readFile("part2_strings.txt", "utf-8", (err, data) => {
+fs.readFile("calibrationStrings.txt", "utf-8", (err, data) => {
   if (err) {
     console.error(err);
     return;
