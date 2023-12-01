@@ -22,12 +22,7 @@ const lastRegex =
   /enin|thgie|neves|xis|evif|ruof|eerht|owt|eno|orez|0|1|2|3|4|5|6|7|8|9/;
 
 // Reverses a string and returns the reversed string
-function reverseString(stringInput) {
-  let splitString = stringInput.split("");
-  let reverseArray = splitString.reverse();
-  let joinArray = reverseArray.join("");
-  return joinArray;
-}
+const reverseString = (stringInput) => stringInput.split("").reverse().join("");
 
 // Start the sum total from zero and start the file reader
 let sumOfNum = 0;
@@ -37,13 +32,13 @@ fs.readFile("calibrationStrings.txt", "utf-8", (err, data) => {
     return;
   }
   // Split the file into an array of lines
-  let textFileInput = data.split("\n");
-  for (let line of textFileInput) {
+  const textFileInput = data.split("\n");
+  for (const line of textFileInput) {
     // Get first number or digit name and store it
     let matchedStrings = line.match(firstRegex);
     let calibrationNumber = matchedStrings[0];
     // Reverse the string
-    let reverseLine = reverseString(line);
+    const reverseLine = reverseString(line);
     // Get last number or digit name and store it
     matchedStrings = reverseLine.match(lastRegex);
     // Reverse the string back to normal and store it
