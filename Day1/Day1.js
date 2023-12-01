@@ -36,17 +36,24 @@ fs.readFile("calibrationStrings.txt", "utf-8", (err, data) => {
     console.error(err);
     return;
   }
+  // Split the file into an array of lines
   let textFileInput = data.split("\n");
   for (let line of textFileInput) {
+    // Get first number or digit name and store it
     let matchedStrings = line.match(firstRegex);
     let calibrationNumber = matchedStrings[0];
+    // Reverse the string
     let reverseLine = reverseString(line);
+    // Get last number or digit name and store it
     matchedStrings = reverseLine.match(lastRegex);
+    // Reverse the string back to normal and store it
     calibrationNumber += reverseString(matchedStrings[0]);
+    // Replace any digit names into numbers
     calibrationNumber = calibrationNumber.replace(
       /zero|one|two|three|four|five|six|seven|eight|nine/gi,
       (match) => digitNames[match]
     );
+    // Add the calibrationNumber to the total sum and print it
     sumOfNum += Number(calibrationNumber);
     console.log("Current Calibration Number: " + calibrationNumber);
   }
