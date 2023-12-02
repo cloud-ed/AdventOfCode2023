@@ -13,7 +13,7 @@ const validGames: number[] = [];
 
 fs.readFile("./Day2/gameStrings.txt", "utf-8", (err, data) => {
     if (err) {
-      console.error(err);
+      console.error("Error reading file: ", err);
       return;
     }
     const textFileInput = data.split("\n");
@@ -47,15 +47,12 @@ fs.readFile("./Day2/gameStrings.txt", "utf-8", (err, data) => {
                 blueCount += Number(blueNum);
             }
         }
-        if(redCount <= redMax){
-            if(greenCount <= greenMax){
-                if(blueCount <= blueMax){
-                    validGames.push(currentGameNum);
-                    validGameSum += currentGameNum;
-                }
-            }
+        console.log(`Game ${currentGameNum}: Red - ${redCount}, Green - ${greenCount}, Blue - ${blueCount}`);
+        if(redCount <= redMax && greenCount <= greenMax && blueCount <= blueMax){
+            console.log(`-=Game ${currentGameNum} =-\nRed: ${redCount}\nGreen: ${greenCount}\nBlue: ${blueCount}`);
+            validGames.push(currentGameNum);
+            validGameSum += currentGameNum;
         }
-        console.log("-=Game " + currentGameNum + "=-" + "\nRed: " + redCount + "\nGreen: " + greenCount + "\nBlue: " + blueCount);
     }
     console.log("The sum of all valid games is: " + validGameSum);
 });
