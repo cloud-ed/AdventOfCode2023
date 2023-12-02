@@ -10,5 +10,8 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.10.2"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.1"
   }
 }
