@@ -11,7 +11,7 @@ const blueMax = 14;
 // Create an array of the valid games by their number
 const validGames: number[] = [];
 
-fs.readFile("./Day2/testStrings.txt", "utf-8", (err, data) => {
+fs.readFile("./Day2/gameStrings.txt", "utf-8", (err, data) => {
     if (err) {
       console.error(err);
       return;
