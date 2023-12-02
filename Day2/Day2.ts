@@ -34,43 +34,53 @@ fs.readFile("./Day2/gameStrings.txt", "utf-8", (err, data) => {
     // Removes spaces from the string and replaces the ';' with a ',' to make the string consistent
     const noSpaces = noGameNum.replace(/ /g, "");
     const listedColourNum = noSpaces.replace(/;/g, ",");
+    // Splits the string into an array of colour values
     const numsAndColours = listedColourNum.split(",");
+    // Begin checking for the max colour value
     let redMax = 0;
     let greenMax = 0;
     let blueMax = 0;
+    // For each colour, get the corresponding number and check if it is valid
     for (let i = 0; i < numsAndColours.length; i++) {
       if (numsAndColours[i].includes("red")) {
         const redNum = Number(numsAndColours[i].replace("red", ""));
+        // If the num is higher, replace the max
         if (redMax < redNum) {
           redMax = redNum;
         }
+        // If over the limit, game is invalid
         if (redNum > redLimit) {
           isValid = false;
         }
       } else if (numsAndColours[i].includes("green")) {
         const greenNum = Number(numsAndColours[i].replace("green", ""));
+        // If the num is higher, replace the max
         if (greenMax < greenNum) {
           greenMax = greenNum;
         }
+        // If over the limit, game is invalid
         if (greenNum > greenLimit) {
           isValid = false;
         }
       } else if (numsAndColours[i].includes("blue")) {
         const blueNum = Number(numsAndColours[i].replace("blue", ""));
+        // If the num is higher, replace the max
         if (blueMax < blueNum) {
           blueMax = blueNum;
         }
+        // If over the limit, game is invalid
         if (blueNum > blueLimit) {
           isValid = false;
-          break;
         }
       }
     }
+    // Calculate the current games power, print it and add it to the total power sum
     const currentGamePower = redMax * greenMax * blueMax;
     console.log(
       `-=Game ${currentGameNum} =-\nCurrent game power: ${currentGamePower}`
     );
     powerSum += currentGamePower;
+    // If the game is valid add to the list of valid games and add the game number to the valid game number sum
     if (isValid == true) {
       validGames.push(currentGameNum);
       validGameSum += currentGameNum;
