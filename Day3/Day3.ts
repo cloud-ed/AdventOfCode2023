@@ -25,7 +25,6 @@ fs.readFile("./Day3/engineStrings.txt", "utf-8", (err, data) => {
     return;
   }
   const textFileInput = data.split("\n");
-
   // Start zero-based line number counting
   let currentLineNumber = 0;
   let sumPartNumber = 0;
@@ -33,7 +32,6 @@ fs.readFile("./Day3/engineStrings.txt", "utf-8", (err, data) => {
     // Split the string by '.', meaning you only get numbers and characters
     const lineItems = line.split(/\./g);
     const lineNumbers = lineItems
-
       // Remove blank strings in array and any that are not numbers
       .filter((item) => item.trim() !== "")
       .filter((item) => !isNaN(Number(item)));
@@ -43,7 +41,6 @@ fs.readFile("./Day3/engineStrings.txt", "utf-8", (err, data) => {
       // For each set of numbers in the line
       for (const numSet of lineNumbers) {
         const currentNumIndex = line.indexOf(numSet);
-
         // Search through all surrounding positions of the number set to see if they are adjacent to a symbol, if so return setIsValid as true
         let setIsValid = false;
         const surroundingCharacters: string[] = [];
@@ -54,7 +51,6 @@ fs.readFile("./Day3/engineStrings.txt", "utf-8", (err, data) => {
             // Sets the xPos and yPos to the current search position
             const yPos = currentLineNumber + y;
             const xPos = currentNumIndex + x;
-
             // Check if the position is within bounds
             if (
               yPos >= 0 &&
@@ -66,13 +62,14 @@ fs.readFile("./Day3/engineStrings.txt", "utf-8", (err, data) => {
             }
           }
         }
-        // If any of the surrounding characters
+        // If any of the surrounding spaces are valid characters, the number set is valid
         for (const character of surroundingCharacters) {
           if (symbols.some((symbol) => character.includes(symbol))) {
             setIsValid = true;
             break;
           }
         }
+        // If valid add to the sum of part numbers
         if (setIsValid) {
           sumPartNumber += Number(numSet);
         }
