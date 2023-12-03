@@ -19,7 +19,7 @@ const symbols = [
   "/",
 ];
 
-fs.readFile("./Day3/testStrings.txt", "utf-8", (err, data) => {
+fs.readFile("./Day3/engineStrings.txt", "utf-8", (err, data) => {
   if (err) {
     console.error("Error reading file: ", err);
     return;
