@@ -19,7 +19,7 @@ const symbols = [
   "/",
 ];
 
-fs.readFile("./Day3/engineStrings.txt", "utf-8", (err, data) => {
+fs.readFile("./Day3/testStrings.txt", "utf-8", (err, data) => {
   if (err) {
     console.error("Error reading file: ", err);
     return;
@@ -47,7 +47,7 @@ fs.readFile("./Day3/engineStrings.txt", "utf-8", (err, data) => {
         // Goes on the layer above, at and below the number set
         for (let y = -1; y <= 1; y++) {
           // Goes to the layer before, on and after the number set
-          for (let x = -1; x <= numSet.length + 1; x++) {
+          for (let x = -1; x <= numSet.length; x++) {
             // Sets the xPos and yPos to the current search position
             const yPos = currentLineNumber + y;
             const xPos = currentNumIndex + x;
@@ -71,11 +71,12 @@ fs.readFile("./Day3/engineStrings.txt", "utf-8", (err, data) => {
         }
         // If valid add to the sum of part numbers
         if (setIsValid) {
+          console.log(numSet);
           sumPartNumber += Number(numSet);
         }
       }
-      currentLineNumber++;
     }
+    currentLineNumber++;
   }
   console.log(sumPartNumber);
 });
